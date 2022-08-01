@@ -1,4 +1,32 @@
 
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@NIKITA0509-I 
+kartikey81
+/
+SVM_RandomForest_model
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+SVM_RandomForest_model/app.py /
+@kartikey81
+kartikey81 Update app.py
+Latest commit d8e0c16 1 hour ago
+ History
+ 1 contributor
+79 lines (77 sloc)  3.01 KB
+
 import streamlit as st 
 from PIL import Image
 import pickle
@@ -9,10 +37,11 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 # Load the pickled model
 model = pickle.load(open('svmmodel.pkl', 'rb')) 
 model_randomforest = pickle.load(open('randomforest.pkl', 'rb')) 
-
+dataset= pd.read_csv('Social_Network_Ads.csv')
+X = dataset.iloc[:, [2, 3]].values
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
-
+X = sc.fit_transform(X)
 def predict_note_authentication(UserID, Gender,Age,EstimatedSalary):
   output= model.predict(sc.transform([[Age,EstimatedSalary]]))
   print("Purchased", output)
@@ -77,3 +106,18 @@ def main():
     st.markdown(html_temp,unsafe_allow_html=True)
 if __name__=='__main__':
   main()
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+You have no unread notifications
